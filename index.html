@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+  $("form").submit(function (event) {
+       var formData = {
+      name: $("#search").val()
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "main.php",
+      data: formData,
+      dataType: "html",
+      encode: true,
+    }).done(function (data) {
+        $("#result").empty();
+        $('#result').append(data);
+    });
+
+    event.preventDefault();
+  });
+});
+</script>
+    <link rel="stylesheet" href="yt.css">
+</head>
+<body>
+
+    <form class="form-wrapper">
+    <input type="text" id="search" placeholder="Search for..." required>
+    <input type="submit" value="go" id="submit">
+</form>
+    <div><h2 class='text-center pad-section'>Youtube videos</h2><div class='projects-wrapper'>
+    <div id="result"></div>
+        </div>
+     </div>
+</body>
+</html>
